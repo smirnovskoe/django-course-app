@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse
 from django.views import generic
 
+from courses.models import Course
 from . import forms
 
 
@@ -15,9 +16,11 @@ class SignUpView(generic.CreateView):
 class ProfileView(generic.base.View):
     def get(self, request, *args, **kwargs):
         current_user = request.user
+        course_count = Course.objects.filter(trainer=current_user).count()
 
         context = {
-            'user_name': current_user.username
+            'user_name': current_user.username,
+            'course_count': course_count,
         }
 
         return render(request, 'registration/profile.html', context)
