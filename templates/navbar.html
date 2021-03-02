@@ -1,0 +1,32 @@
+<header class="text-gray-400 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'courses:course-list' %}" class="mr-5 hover:text-white">Courses</a>
+                <a href="{% url 'quiz:quiz-list' %}" class="mr-5 hover:text-white">Questionnaires</a>
+                <a href="{% url 'lessons:calendar' %}" class="mr-5 hover:text-white">Calendar</a>
+            {% endif %}
+        </nav>
+        <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full"
+                 viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl xl:block lg:hidden">#TeacHUB</span>
+        </a>
+        <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'signup' %}" class="mr-5 hover:text-gray-900">Sign Up</a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    Hi, {{ request.user.username }}
+                    <a href="{% url 'logout' %}" class="ml-5 mr-5 hover:text-gray-900">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="ml-5 mr-5 hover:text-gray-900">Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</header>
