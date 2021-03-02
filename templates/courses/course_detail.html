@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="max-w-lg mx-auto">
+                <h2 class="text-sm title-font text-gray-500 tracking-widest">Course</h2>
+                <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ course.course_name }}</h1>
+                <div class="flex mb-4">
+                    <a href="{% url 'courses:course-detail' course.slug %}"
+                       class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+                        Overview
+                    </a>
+
+                    <a href="{% url 'courses:course-update' course.slug %}"
+                       class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                        Update Details
+                    </a>
+                </div>
+                <p class="leading-relaxed mb-4">{{ course.description }}</p>
+                <div class="flex border-t border-gray-200 py-2">
+                    <span class="text-gray-500">Lessons count</span>
+                    <span class="ml-auto text-gray-900">{{ 33 }}</span>
+                </div>
+                <div class="flex border-t border-gray-200 py-2">
+                    <span class="text-gray-500">Start</span>
+                    <span class="ml-auto text-gray-900">{{ course.date_start }}</span>
+                </div>
+                <div class="flex border-t border-gray-200 py-2">
+                    <span class="text-gray-500">End</span>
+                    <span class="ml-auto text-gray-900">{{ course.date_end }}</span>
+                </div>
+                <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+                    <span class="text-gray-500">Status</span>
+                    <span class="ml-auto text-gray-900">{{ course.status }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+{% endblock %}
+

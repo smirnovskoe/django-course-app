@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+    <section class="text-gray-600 body-font overflow-hidden">
+        <div class="container px-5 py-24 mx-auto">
+
+            <div class="max-w-lg mx-auto">
+                <h2 class="text-sm title-font text-gray-500 tracking-widest">Course</h2>
+                <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ course.course_name }}</h1>
+                <div class="flex mb-4">
+                    <a href="{% url 'courses:course-detail' course.slug %}"
+                       class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">
+                        Overview
+                    </a>
+
+                    <a href="{% url 'courses:course-update' course.slug %}"
+                       class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1">
+                        Update Details
+                    </a>
+                </div>
+                <form method="POST" action=".">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="w-full text-white bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg" type="submit">
+                        Submit
+                    </button>
+                </form>
+                <div class="mt-5">
+                    <
+                    <div class="mt-5 py-5 border-t border-gray-500">
+                        <a href="{% url 'courses:course-delete' course.slug %}"
+                           class="w-1/2 mt-3 flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
