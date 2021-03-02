@@ -16,14 +16,9 @@ class SignUpView(generic.CreateView):
         return reverse('login')
 
 
-# class based
 class LandingPageView(generic.TemplateView):
+    """Главная страница"""
     template_name = 'landing.html'
-
-
-# function based
-def landing_page(request):
-    return render(request, 'landing.html')
 
 
 @login_required
