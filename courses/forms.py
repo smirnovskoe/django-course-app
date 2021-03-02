@@ -27,8 +27,4 @@ class CourseForm(forms.Form):
     status = forms.IntegerField()
 
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ("username",)
-        field_classes = {'username': UsernameField}
+
