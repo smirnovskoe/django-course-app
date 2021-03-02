@@ -5,16 +5,16 @@ from django.utils import (
     text,
     timezone
 )
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
 
 class Course(models.Model):
-    STATUS = (
-        (0, "Didn't start"),
-        (1, 'Start'),
-        (3, 'Ended'),
-    )
+    class CourseStatus(models.TextChoices):
+        DIDNT_START = "Didn't start", _("DIDNT")
+        START = 'Start', _('START')
+        ENDED = 'Ended', _('ENDED')
 
     course_name = models.CharField(max_length=255)
     picture = models.ImageField(upload_to='course_images/', default='course_images/default.png')
@@ -33,10 +33,18 @@ class Course(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    status = models.IntegerField(
-        choices=STATUS,
-        default=0,
+    status = models.CharField(
+        max_length=20,
+        choices=CourseStatus.choices,
+        default=CourseStatus.DIDNT_START,
     )
+
+    def get_course_status(self, current_date):
+        """Get course status"""
+        if self.date_start <= current_date <= self.date_end:
+            return self.CourseStatus.START
+        elif self.date_end > current_date:
+            return self.CourseStatus.ENDED
 
     def save(self, *args, **kwargs):
         self.slug = text.slugify(self.course_name)
