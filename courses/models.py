@@ -39,6 +39,9 @@ class Course(models.Model):
         default=CourseStatus.DIDNT_START,
     )
 
+    class Meta:
+        verbose_name_plural = "Courses"
+
     def get_course_status(self, current_date):
         """Get course status"""
         if self.date_start <= current_date <= self.date_end:
