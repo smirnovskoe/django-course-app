@@ -1,0 +1,2 @@
+# Django Course manage app
+
