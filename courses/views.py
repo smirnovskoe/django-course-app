@@ -25,8 +25,6 @@ def course_list(request):
         )
     else:
         courses = models.Course.objects.filter(trainer=current_user).order_by('-publish')
-        for cr in courses:
-            print(cr.status)
 
     context = {
         'courses': courses,
