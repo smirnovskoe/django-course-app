@@ -50,7 +50,10 @@
 
                         </div>
                         <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 items-center flex flex-col">
+                            <a href="{% url 'lessons:lesson-list' course.id %}"
+                               class="text-right text-blue-500 inline-flex items-center mt-4">View lessons
 
+                            </a>
 
                             <a href="/courses/{{ course.slug }}"
                                class="text-blue-500 inline-flex items-center mt-4">Description
