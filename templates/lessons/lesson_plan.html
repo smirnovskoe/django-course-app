@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+
+{% block content %}
+    <div class="container px-5 py-24 mx-auto">
+        <div class="-my-8 divide-y-2 divide-gray-100">
+            <div class="w-full mb-6 py-6 flex justify-between item-center border-b border-gray-200">
+                <h1 class="text-4xl text-gray-800">
+                    Plan: {{ lesson.lesson_name }}
+                </h1>
+                <a class="text-gray-500 hover:text-blue-500" href="{% url 'lessons:lesson-list' lesson.course_id %}">Go
+                    back to lessons</a>
+            </div>
+            {{ form.media }}
+            <form action="" method='POST' enctype="multipart/form-data" novalidate accept-charset="utf-8">
+                {% csrf_token %}
+                {{ form.body }}
+                <button class="lg:w-1/5 w-full text-white bg-blue-400 hover:bg-blue-500 px-3 py-2 rounded-lg" type="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

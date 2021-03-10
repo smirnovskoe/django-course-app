@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            {% if not lessons %}
+                <div class="flex flex-col text-center w-full mb-20">
+                    <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
+                        This course doesn't contain lessons</h1>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                        <a href="{% url 'lessons:lesson-create' course_id %}" class="text-gray-500 hover:text-blue-500">
+                            Click here to add a lesson for this course
+                        </a>
+                    </p>
+                </div>
+            {% else %}
+
+                <div class="lg:w-3/4 w-full mx-auto">
+                    <div class="w-full mb-6 py-6 flex justify-between item-center border-b border-blue-200">
+                        <h1 class="text-4xl text-gray-800">
+                            Lessons {{ course_id }}
+                        </h1>
+                        <a class="text-gray-500 hover:text-red-500" href="{% url 'lessons:lesson-create' course_id %}">Create
+                            a
+                            new
+                            lesson</a>
+                    </div>
+                    <div class="w-full mx-auto ">
+                        <div class="flex flex-col">
+                            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                        <table class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Name
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Duration
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Date start
+                                                </th>
+
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Status
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Action
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Plan
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="bg-white divide-y divide-gray-200">
+                                            {% for lesson in lessons %}
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ lesson.lesson_name }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ lesson.duration }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ lesson.date_start }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ lesson.status }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                        <a href="#"
+                                                           class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                        <a href="#"
+                                                           class="text-indigo-600 hover:text-indigo-900">Delete</a>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                        <a href="{% url 'lessons:plan-view' lesson.id course_id %}"
+                                                           class="text-green-600 hover:text-green-900">Plan</a>
+                                                        <a href="{% url 'materials:material-list' lesson.id %}"
+                                                           class="text-indigo-600 hover:text-indigo-900">Materials</a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% endif %}
+            <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

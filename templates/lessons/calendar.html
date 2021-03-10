@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block external_css %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container px-5 py-18 mx-auto lg:w-2/4 ">
+        <div class="w-full mb-6 py-6 flex justify-between item-center border-b border-gray-200">
+            <h1 class="text-4xl text-gray-800">
+                Events
+            </h1>
+        </div>
+        <div id="calendar">
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                events: [
+                    {% for lesson in lessons %}
+                        {
+                            title: "{{ lesson.lesson_name }}",
+                            start: "{{ lesson.date_start| date:'Y-m-d' }}",
+
+                        },
+                    {% endfor %}
+                ]
+            });
+            calendar.render();
+        });
+
+    </script>
+{% endblock %}
+
+{% block external_js %}
+
+
+{% endblock %}
