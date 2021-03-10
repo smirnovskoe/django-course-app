@@ -18,7 +18,7 @@
                 <div class="lg:w-3/4 w-full mx-auto">
                     <div class="w-full mb-6 py-6 flex justify-between item-center border-b border-blue-200">
                         <h1 class="text-4xl text-gray-800">
-                            Lessons {{ course_id }}
+                            Lessons: {{ course_name }}
                         </h1>
                         <a class="text-gray-500 hover:text-red-500" href="{% url 'lessons:lesson-create' course_id %}">Create
                             a
@@ -76,9 +76,9 @@
                                                         <div class="text-sm text-gray-900">{{ lesson.status }}</div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                        <a href="#"
+                                                        <a href="{% url 'lessons:lesson-update' lesson.id %}"
                                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                        <a href="#"
+                                                        <a href="{% url 'lessons:lesson-delete' lesson.id %}"
                                                            class="text-indigo-600 hover:text-indigo-900">Delete</a>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">

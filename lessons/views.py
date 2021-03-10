@@ -51,6 +51,8 @@ class LessonsListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        course_name = models.Course.objects.get(id=self.kwargs['course_id'])
+        context['course_name'] = course_name
         context['course_id'] = self.kwargs['course_id']
         return context
 
@@ -84,7 +86,8 @@ class LessonUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = forms.LessonModelForm
 
     def get_success_url(self):
-        return reverse('lessons:lesson-list')
+        lesson = models.Lesson.objects.get(id=self.kwargs['pk'])
+        return reverse('lessons:lesson-list', args=[lesson.course.id])
 
     def get_queryset(self):
         return models.Lesson.objects.all()

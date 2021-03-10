@@ -26,7 +26,7 @@ class Lesson(models.Model):
         default="Didn't start",
     )
 
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, )
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lsn_crs')
 
     def __str__(self):
         return f'{self.lesson_name}'

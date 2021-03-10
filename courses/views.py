@@ -7,6 +7,8 @@ from django.views import generic
 from . import forms
 from . import models
 
+from lessons.models import Lesson
+
 
 class LandingPageView(generic.TemplateView):
     """Main page"""
@@ -36,8 +38,11 @@ def course_list(request):
 def course_detail(request, slug):
     course = models.Course.objects.get(slug=slug)
 
+    lesson_count = course.lsn_crs.count()
+
     context = {
         'course': course,
+        'lesson_count': lesson_count,
     }
 
     return render(request, 'courses/course_detail.html', context)
