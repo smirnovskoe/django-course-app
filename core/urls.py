@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('', LandingPageView.as_view(), name='landing-page'),
     path('courses/', include('courses.urls', namespace='courses')),
+    path('lessons/', include('lessons.urls', namespace='lessons')),
 ]
 
 if settings.DEBUG:

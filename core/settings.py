@@ -10,10 +10,11 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
 
     # Local applications
     'courses.apps.CoursesConfig',
+    'lessons.apps.LessonsConfig',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +116,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-STATIC_ROOT = BASE_DIR / 'static_root'
+STATIC_ROOT = 'static_root'
 
 # Media config
 MEDIA_ROOT = BASE_DIR.joinpath('media')
