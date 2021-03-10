@@ -97,7 +97,7 @@ class LessonDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = 'lessons/lesson_delete.html'
     context_object_name = 'lesson'
 
-    def get_success_url(self):
+    def get_success_url(self):  # TODO: исправить args
         return reverse('lessons:lesson-list', args=[self.kwargs['pk']])
 
     def get_queryset(self):
