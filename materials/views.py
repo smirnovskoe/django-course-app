@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from . import forms
 from . import models
@@ -22,7 +22,7 @@ def material_upload(request):
         form = forms.MaterialModelForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return render(request, 'materials/material_list.html')
+            return redirect('courses:course-list')
 
     context = {
         'form': form,

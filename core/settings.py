@@ -3,7 +3,7 @@ from pathlib import Path
 import environ
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 environ.Env.read_env()
@@ -120,8 +120,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = 'static_root'
 
 # Media config
-MEDIA_ROOT = BASE_DIR.joinpath('media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 # Tailwind config
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
@@ -130,8 +130,8 @@ CRISPY_TEMPLATE_PACK = 'tailwind'
 # SMTP config
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'iradmorovich@gmail.com'
+EMAIL_HOST_PASSWORD = 'iRa771test'
 EMAIL_PORT = 587
 
 # Redis and Celery
@@ -144,7 +144,7 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-# MDEditor config
+
 # MDEditor config
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 MDEDITOR_CONFIGS = {

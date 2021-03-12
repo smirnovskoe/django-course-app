@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="max-w-sm mx-auto mt-20">
-        <h3 class="text-center text-blue-400">Logged out!</h3>
+        <a class="text-center hover:text-red-400">You are logged out</a> <br>
         <a class="text-center hover:text-red-400" href="{% url 'login' %}">Click here to login again</a>
     </div>
 {% endblock %}

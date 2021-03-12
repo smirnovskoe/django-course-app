@@ -98,7 +98,8 @@ class LessonDeleteView(LoginRequiredMixin, generic.DeleteView):
     context_object_name = 'lesson'
 
     def get_success_url(self):  # TODO: исправить args
-        return reverse('lessons:lesson-list', args=[self.kwargs['pk']])
+        lesson = models.Lesson.objects.get(id=self.kwargs['pk'])
+        return reverse('lessons:lesson-list', args=[lesson.course.id])
 
     def get_queryset(self):
         return models.Lesson.objects.all()
